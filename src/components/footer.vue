@@ -1,5 +1,5 @@
 <template>
   <footer>
-      <p>nuantongba.com</p>
+      <p>www.nuantongba.com</p>
   </footer>
 </template>
