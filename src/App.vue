@@ -23,6 +23,8 @@ export default {
 
 
 <style lang="less">
+@import "./assets/common.less";
+
 html,
 body,
 #app {
