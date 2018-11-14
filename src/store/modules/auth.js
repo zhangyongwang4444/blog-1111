@@ -28,6 +28,20 @@ const actions = {
         commit('setUser', { user: res.data })
         commit('setLogin', { isLogin: true })
         return res.data
+    },
+    async logout({ commit }) {
+        await auth.logout()
+        commit('setUser', { user: null })
+        commit('setLogin', { isLogin: false })
+
+    },
+    async checkLogin({ commit, state }) {
+        if (state.isLogin) return true
+        let res = await auth.getInfo()
+        commit('setLogin', { isLogin: res.isLogin })
+        if (!state.isLogin) return false
+        commit('setUser', { user: res.data })
+        return true
     }
 }
 export default {
