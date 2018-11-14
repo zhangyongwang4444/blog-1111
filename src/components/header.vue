@@ -12,18 +12,22 @@
       <template v-if="isLogin">
           <h1>FCH</h1>
           <i class="edit el-icon-edit"></i>
-          <img class="avatar" :src="user.avatar" :alt="user.username" :title="user.username">
+          <div class="user">
+              <img class="avatar" :src="user.avatar" :alt="user.username" :title="user.username">
+              <ul>
+                  <li><router-link to="/my">我的</router-link></li>
+                  <li><a href="#" @click="onLogout">注销</a></li>
+              </ul>
+          </div>         
       </template>
     </header>
 </template>
 
 <script>
-
 /**测试代码 */
 import auth from "@/api/auth";
 window.auth = auth;
 /**测试代码 */
-
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -38,7 +42,10 @@ export default {
     this.checkLogin();
   },
   methods: {
-    ...mapActions(["checkLogin"])
+    ...mapActions(["checkLogin", "logout"]),
+    onLogout() {
+      this.logout();
+    }
   }
 };
 </script>
