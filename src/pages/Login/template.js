@@ -1,3 +1,6 @@
+import { mapActions } from 'vuex'
+
+
 export default {
   data() {
     return {
@@ -6,7 +9,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['login']),
     onLogin() {
+      this.login({ username: this.username, password: this.password })
       console.log(this.username + '' + this.password)
     }
   }
