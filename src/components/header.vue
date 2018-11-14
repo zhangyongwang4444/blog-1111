@@ -1,7 +1,7 @@
 <template>
     <header :class="{login:isLogin,'no-login':!isLogin}">
       <template v-if="!isLogin">
-          <h1>FCH博客系统</h1>
+          <h1>FCH项目系统</h1>
           <p>项目案例汇总</p>
           <div class="btns">
             <el-button>立即登录</el-button>
@@ -12,18 +12,26 @@
       <template v-if="isLogin">
           <h1>FCH</h1>
           <i class="edit el-icon-edit"></i>
-          <img class="avatar" src="http://cn.gravatar.com/avatar/1?s=128&d=identicon" alt="">
+          <img class="avatar" :src="user.avatar" :alt="user.username" :title="user.username">
       </template>
-      
     </header>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   data() {
-    return {
-      isLogin: true
-    };
+    return {};
+  },
+  computed: {
+    ...mapGetters(["isLogin", "user"])
+  },
+  created() {
+    this.checkLogin();
+  },
+  methods: {
+    ...mapActions(["checkLogin"])
   }
 };
 </script>

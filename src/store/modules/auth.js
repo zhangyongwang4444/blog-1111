@@ -5,7 +5,8 @@ const state = {
     isLogin: false
 }
 const getters = {
-
+    user: state => state.user,
+    isLogin: state => state.isLogin
 }
 const mutations = {
     setUser(state, payload) {
