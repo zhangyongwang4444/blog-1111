@@ -1,3 +1,4 @@
+@import './base.less';
 body {
     font: 14px/1.6 Arial, "Microsoft YaHei", "黑体", "宋体", sans-serif;
     color: #333;
@@ -24,4 +25,16 @@ a {
     border-radius: 4px;
     font-weight: normal;
     border: none;
+}
+
+input {
+    line-height: 40px;
+    border: 1px solid #eaeaea;
+    padding: 0 10px;
+    border-radius: 4px;
+    outline: none;
+}
+
+input:focus {
+    border-color: @themeLighterColor;
 }

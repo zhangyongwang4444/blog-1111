@@ -1,7 +1,13 @@
 export default {
-    data() {
-      return {
-        msg: "Welcome to Your Vue.js App"
-      };
+  data() {
+    return {
+      username: '',
+      password: ''
     }
-  };
+  },
+  methods: {
+    onLogin() {
+      console.log(this.username + '' + this.password)
+    }
+  }
+};
