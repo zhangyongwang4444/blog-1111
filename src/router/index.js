@@ -10,9 +10,15 @@ import My from '@/pages/My/template.vue'
 import Register from '@/pages/Register/template.vue'
 import User from '@/pages/User/template.vue'
 
+import store from '../store'
+
+/**测试代码 */
+window.store = store/**暴露全局对象 测试代码 */
+/**测试代码 */
+
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -32,15 +38,18 @@ export default new Router({
     },
     {
       path: '/create',
-      component: Create
+      component: Create,
+      meta: { requiresAuth: true }
     },
     {
       path: '/edit/:blogId',
-      component: Edit
+      component: Edit,
+      meta: { requiresAuth: true }
     },
     {
       path: '/my',
-      component: My
+      component: My,
+      meta: { requiresAuth: true }
     },
     {
       path: '/user/:userId',
@@ -48,3 +57,23 @@ export default new Router({
     },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    store.dispatch('checkLogin').then(isLogin => {
+      if (!isLogin) {
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath }
+        })
+      } else {
+        next()
+      }
+    })
+
+  } else {
+    next() //确保一定要用 next()
+  }
+})
+
+export default router
