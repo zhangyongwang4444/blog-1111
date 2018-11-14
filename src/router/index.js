@@ -15,18 +15,6 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/create',
-      component: Create
-    },
-    {
-      path: '/detail',
-      component: Detail
-    },
-    {
-      path: '/edit',
-      component: Edit
-    },
-    {
       path: '/',
       component: Index
     },
@@ -35,15 +23,27 @@ export default new Router({
       component: Login
     },
     {
-      path: '/my',
-      component: My
-    },
-    {
       path: '/register',
       component: Register
     },
     {
-      path: '/user',
+      path: '/detail/:blogId',
+      component: Detail
+    },
+    {
+      path: '/create',
+      component: Create
+    },
+    {
+      path: '/edit/:blogId',
+      component: Edit
+    },
+    {
+      path: '/my',
+      component: My
+    },
+    {
+      path: '/user/:userId',
       component: User
     },
   ]
