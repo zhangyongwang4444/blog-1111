@@ -18,6 +18,13 @@
 </template>
 
 <script>
+
+/**测试代码 */
+import auth from "@/api/auth";
+window.auth = auth;
+/**测试代码 */
+
+
 import { mapGetters, mapActions } from "vuex";
 
 export default {
