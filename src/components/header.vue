@@ -63,7 +63,7 @@ header.no-login {
     font-size: 40px;
     margin: 60px 0 0 0;
     text-transform: uppercase;
-    // color: #fff;
+    color: #fff;
     a {
       color: #fff;
     }

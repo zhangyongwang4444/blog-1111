@@ -1,39 +1,31 @@
-import request from '@/helpers/request.js'
-import auth from '@/api/auth.js'
-import blog from '@/api/blog.js'
 
-window.request = request
-window.auth = auth
-window.blog = blog
+import blog from '@/api/blog.js'
 
 export default {
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
-    };
+      blogs: [],
+      total: 0,
+      page: 1
+    }
+  },
+  created() {
+    blog.getIndexBlogs().then(res => {
+      console.log(res)
+      this.blogs = res.data
+      this.total = res.total
+      this.page = res.page
+    })
   },
   methods: {
-    onClick1() {
-      this.$alert('FCH前途无量', '暖通吧', {
-        confirmButtonText: '确定',
-        callback: action => {
-          this.$message({
-            type: 'info',
-            message: 'fch'
-          });
-        }
-      });
-    },
-    onClick2() {
-      this.$alert('牛的一批', '德国索热', {
-        confirmButtonText: '确定',
-        callback: action => {
-          this.$message({
-            type: 'info',
-            message: 'sorel'
-          });
-        }
-      });
+    onPageChange(newPage) {
+      console.log(newPage)
+      blog.getIndexBlogs({ page: newPage }).then(res => {
+        console.log(res)
+        this.blogs = res.data
+        this.total = res.total
+        this.page = res.page
+      })
     }
   }
 };
