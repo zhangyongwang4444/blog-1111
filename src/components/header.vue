@@ -10,8 +10,8 @@
       </template>
 
       <template v-if="isLogin">
-          <h1>FCH</h1>
-          <i class="edit el-icon-edit"></i>
+          <h1><router-link to="/">FCH</router-link></h1>
+          <router-link to="/create"><i class="edit el-icon-plus"></i></router-link>
           <div class="user">
               <img class="avatar" :src="user.avatar" :alt="user.username" :title="user.username">
               <ul>
@@ -63,7 +63,7 @@ header.no-login {
     font-size: 40px;
     margin: 60px 0 0 0;
     text-transform: uppercase;
-    color: #fff;
+    // color: #fff;
     a {
       color: #fff;
     }
