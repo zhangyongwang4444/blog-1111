@@ -1,12 +1,11 @@
 <template>
   <div id="detail">
     <section class="user-info">
-      <img src="http://cn.gravatar.com/avatar/1?s=128&d=identicon" class="avatar">
-      <h3>FCH标题</h3>
-      <p>张永旺<span>发布于5天前</span></p>
+      <img :src="user.avatar" :alt="user.username" :title="user.username" class="avatar">
+      <h3>{{title}}</h3>
+      <p><router-link :to="`/user/${user.id}`">{{user.username}}</router-link> 发布于{{createdAt}}</p>
     </section>
-    <section class="article">
-      <p>哦我我我我iv那都是v你的手</p>
+    <section class="article" v-html="markdown">
     </section>
   </div>
 </template>
