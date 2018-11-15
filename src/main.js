@@ -7,7 +7,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+import Util from '@/helpers/Util' //引入插件
+
 Vue.use(ElementUI)
+Vue.use(Util)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
