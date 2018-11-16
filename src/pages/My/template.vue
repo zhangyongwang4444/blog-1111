@@ -1,27 +1,35 @@
 <template>
   <div id="user">
     <section class="user-info">
-      <img src="http://cn.gravatar.com/avatar/1?s=128&d=identicon" class="avatar">
-      <h3>张永旺</h3>
+      <img :src="user.avatar" :alt="user.username" class="avatar">
+      <h3>{{user.username}}</h3>
     </section>
     <section>
-      <a class="item">
+      <router-link class="item" v-for="blog in blogs" :key="blog.id" :to="`/detail/${blog.id}`">
         <div class="date">
-          <span class="day">13</span>
-          <span class="month">11月</span>
-          <span class="year">2018年</span>
+          <span class="day">{{splitDate(blog.createdAt).date}}</span>
+          <span class="month">{{splitDate(blog.createdAt).month}}月</span>
+          <span class="year">{{splitDate(blog.createdAt).year}}</span>
         </div>
-        <h3>宁波FCH体验间施工记录</h3>
-        <p>哈哈哈哈哈</p>
+        <h3>{{blog.title}}</h3>
+        <p>{{blog.description}}</p>
         <div class="actions">
-          <a>编辑</a>
-          <a href="#" >删除</a>
+          <router-link :to="`/edit/${blog.id}`">编辑</router-link>
+          <a href="#" @click.prevent="onDelete(blog.id)">删除</a>
         </div>
-      </a>
+      </router-link>
+    </section>
+    <section class="pagination">
+        <el-pagination 
+          layout="prev, pager, next" 
+          :total="total" 
+          :current-page="page"
+          @current-change="onPageChange">
+        </el-pagination>
     </section>
   </div>
 </template>
 
 <script src="./template.js"></script>
 
-<style src="../My/template.less" lang="less"></style>
+<style src="./template.less" lang="less"></style>
